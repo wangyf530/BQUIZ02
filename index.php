@@ -1,4 +1,7 @@
-﻿<!-- 前後台一樣的東西放這裡 -->
+﻿<?php
+include_once "./api/db.php";
+?>
+<!-- 前後台一樣的東西放這裡 -->
 
 <!DOCTYPE html
     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -24,7 +27,12 @@
     <div id="all">
         <div id="title">
             <!-- 改成時間函式 -->
-            <?=date('m 月 d 日 l');?> | 今日瀏覽: 1 | 累積瀏覽: 36 </div>
+            <?=date('m 月 d 日 l');?> 
+            | 今日瀏覽: <?=$TOTAL->find(['date'=>date("Y-m-d")])['total'];?> 
+            | 累積瀏覽: <?=$TOTAL->sum('total');?> 
+            <a href="index.php" style="float:right">回首頁</a>
+            <a href="index.php" style="float:right">回首頁</a>
+        </div>
         <div id="title2">
             <!-- 增加連結跟圖片 -->
             <a href="index.php" title="健康促進網-回首頁">
