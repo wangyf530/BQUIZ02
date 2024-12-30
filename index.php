@@ -9,6 +9,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
     <title>健康促進網</title>
+    <!-- 改路徑 -->
     <link href="./css/css.css" rel="stylesheet" type="text/css">
     <script src="./js/jquery-1.9.1.min.js"></script>
     <script src="./js/js.js"></script>
@@ -25,6 +26,7 @@
             <!-- 改成時間函式 -->
             <?=date('m 月 d 日 l');?> | 今日瀏覽: 1 | 累積瀏覽: 36 </div>
         <div id="title2">
+            <!-- 增加連結跟圖片 -->
             <a href="index.php" title="健康促進網-回首頁">
                 <img src="icon/02B01.jpg" alt="健康促進網-回首頁">
             </a>
@@ -39,14 +41,16 @@
             </div>
             <div class="hal" id="main">
                 <div>
+                    <!-- 加入跑馬燈 更改順序 -->
                     <div class="" style="width:75%;display:inline-block;">
                         <marquee> 請民眾踴躍投稿電子報，讓電子報成為大家相互交流、分享的園地！！ </marquee>
                     </div>
-
+                    <!-- 更改寬度 -->
                     <span style="width:23%; display:inline-block;">
                         <a href="?do=login">會員登入</a>
                     </span>
                 </div>
+                <!-- 插入特定功能頁面 -->
                 <?php
 					$do = $_GET['do']??'main';
 					$file = "front/".$do.".php";
@@ -59,8 +63,10 @@
             </div>
         </div>
         <div id="bottom">
+            <!-- 改年份 -->
             本網站建議使用：IE9.0以上版本，1024 x 768 pixels 以上觀賞瀏覽 ， Copyright © 2024健康促進網社群平台 All Right Reserved
             <br>
+            <!-- 改路徑 -->
             服務信箱：health@test.labor.gov.tw<img src="./icon/02B02.jpg" width="45">
         </div>
     </div>
