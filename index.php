@@ -56,9 +56,10 @@ include_once "./api/db.php";
                     <span style="width:23%; display:inline-block;">
                         <a href="?do=login">會員登入</a>
                     </span>
-                </div>
+                <login>
                 <!-- 插入特定功能頁面 -->
                 <?php
+                #lloain
 					$do = $_GET['do']??'main';
 					$file = "front/".$do.".php";
 					if(file_exists($file)){

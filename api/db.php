@@ -1,7 +1,7 @@
 <?php
 session_start();
 class DB{
-    protected $dsn = "mysql:host=localhost; charset=utf8; dbname=db02";
+    protected $dsn = "mysql:host=localhost; charset=utf8; dbname=db13";
     protected $pdo;
     protected $table;
 
@@ -149,7 +149,7 @@ class DB{
 
 // 最萬用的 但要打sql語法
 function q($sql){
-    $pdo = new PDO("mysql:host=localhost; charset=utf8; dbname=db02",'root','');
+    $pdo = new PDO("mysql:host=localhost; charset=utf8; dbname=db13",'root','');
     return $pdo -> query($sql) -> fetchAll();
 }
 
@@ -165,6 +165,7 @@ function to($url){
 
 // 宣告db
 $TOTAL = new DB('total');
+$USER = new DB('users');
 
 if(!isset($_SESSION['view'])){
     if($TOTAL->count(['date'=>date("Y-m-d")])>0){
