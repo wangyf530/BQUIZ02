@@ -31,7 +31,6 @@ include_once "./api/db.php";
             | 今日瀏覽: <?=$TOTAL->find(['date'=>date("Y-m-d")])['total'];?> 
             | 累積瀏覽: <?=$TOTAL->sum('total');?> 
             <a href="index.php" style="float:right">回首頁</a>
-            <a href="index.php" style="float:right">回首頁</a>
         </div>
         <div id="title2">
             <!-- 增加連結跟圖片 -->
