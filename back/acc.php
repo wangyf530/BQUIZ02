@@ -1,11 +1,42 @@
+<?php include_once "./api/db.php" ?>
 <style>
-.text-grey {
-    background: #eee;
-}
+    .ct tr:nth-child(1){
+        background:#ccc;
+    }
 </style>
+<fieldset style="width:75%; margin:auto">
+    <legend>帳號管理</legend>
+    <table class="ct" style="width:75%; margin:auto">
+        <tr>
+            <td>帳號</td>
+            <td>密碼</td>
+            <td>刪除</td>
+        </tr>
+        <?php
+        $rows = $USER->all();
+        foreach ($rows as $row):
+        ?>
+        <tr>
+            <td>
+                <?=$row['acc'];?>
+            </td>
+            <td>
+                <!-- <?=$row['pw'];?> -->
+                 <?= str_repeat("*",strlen($row['pw']));?>
+            </td>
+            <td>
+                <input type="checkbox" name="del[]" value="<?=$row['id'];?>">
+            </td>
+        </tr>
+        <?php endforeach;?>
+    </table>
+    <div class="ct">
+        <button onclick="del()">確定刪除</button>
+        <button onclick="resetChk()">清空選取</button>
+    </div>
 
-<fieldset style="width:50%; margin:auto">
-    <legend>會員註冊</legend>
+
+    <h2>新增會員</h2>
     <div style="color:red;">
         * 請設定您要註冊的帳號及密碼（最長12個字元）
     </div>
@@ -28,14 +59,28 @@
         </tr>
         <tr>
             <td>
-                <input type="button" value="註冊" onclick='reg()'>
+                <input type="button" value="新增" onclick='reg()'>
                 <input type="button" value="清除" onclick='resetForm()'>
             </td>
         </tr>
     </table>
-</fieldset>
 
+</fieldset>
 <script>
+    function del(){
+        let dels = $("input[name='del[]']:checked");
+        let ids = new Array();
+        dels.each((idx,item)=>{
+            ids.push($(item).val())
+        })
+        // console.log(ids)
+
+        $.post('./api/del_user.php',{ids},()=>{
+            location.reload()
+        })
+    }
+
+
 function reg() {
     let user = {
         acc: $("#acc").val(),
@@ -60,10 +105,8 @@ function reg() {
                 alert("account already exists!")
             } else {
                 $.post("./api/reg.php", user, (res) =>  {
-                    console.log("reg => ",res);
-                    if (parseInt(res) == 1) {
-                        alert("Register succeeded!")
-                    }
+                    location.reload();
+                    resetForm();
                 })
             }
         })
@@ -78,5 +121,9 @@ function resetForm(){
     $("#pw").val(""),
     $("#pw2").val(""),
     $("#email").val("")
+}
+
+function resetChk(){
+    $("input[type='checkbox']:checked").prop('checked',false)
 }
 </script>

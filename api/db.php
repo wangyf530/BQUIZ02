@@ -166,6 +166,7 @@ function to($url){
 // 宣告db
 $TOTAL = new DB('total');
 $USER = new DB('users');
+$NEWS = new DB('news');
 
 if(!isset($_SESSION['view'])){
     if($TOTAL->count(['date'=>date("Y-m-d")])>0){

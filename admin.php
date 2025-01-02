@@ -1,4 +1,5 @@
 ﻿<!-- 前後台一樣的東西放這裡 -->
+ <?php include_once "api/db.php" ?>
 
 <!DOCTYPE html
     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -23,7 +24,11 @@
     <div id="all">
         <div id="title">
             <!-- 改成時間函式 -->
-            <?=date('m 月 d 日 l');?> | 今日瀏覽: 1 | 累積瀏覽: 36 </div>
+            <?=date('m 月 d 日 l');?>
+            | 今日瀏覽: <?=$TOTAL->find(['date'=>date("Y-m-d")])['total'];?>
+            | 累積瀏覽: <?=$TOTAL->sum('total');?>
+            <a href="index.php" style="float:right">回首頁</a>
+        </div>
         <div id="title2">
             <a href="index.php" title="健康促進網-回首頁">
                 <img src="icon/02B01.jpg" alt="健康促進網-回首頁">
@@ -40,11 +45,18 @@
             <div class="hal" id="main">
                 <div>
                     <div class="" style="width:75%;display:inline-block;">
-                        <marquee> 請民眾踴躍投稿電子報，讓電子報成為大家相互交流、分享的園地！！ </marquee>
+                        <marquee> 請民眾踴躍投稿電子報，讓電子報成為大家相互交流、分享的園地！詳見最新文章 </marquee>
                     </div>
 
                     <span style="width:23%; display:inline-block;">
-                        <a href="?do=login">會員登入</a>
+                        <?php if (!isset($_SESSION['user'])):?>
+                        <a href="index.php?do=login">會員登入</a>
+                        <?php else: ?>
+                        歡迎,<?= $_SESSION['user']; ?>
+                        <br>
+                        <button onclick="location.href='admin.php'">管理</button>
+                        <button onclick="logout()">登出</button>
+                        <?php endif;?>
                     </span>
                 </div>
                 <?php

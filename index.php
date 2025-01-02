@@ -1,5 +1,5 @@
 ﻿<?php
-include_once "./api/db.php";
+include_once "api/db.php";
 ?>
 <!-- 前後台一樣的東西放這裡 -->
 
@@ -27,9 +27,9 @@ include_once "./api/db.php";
     <div id="all">
         <div id="title">
             <!-- 改成時間函式 -->
-            <?=date('m 月 d 日 l');?> 
-            | 今日瀏覽: <?=$TOTAL->find(['date'=>date("Y-m-d")])['total'];?> 
-            | 累積瀏覽: <?=$TOTAL->sum('total');?> 
+            <?=date('m 月 d 日 l');?>
+            | 今日瀏覽: <?=$TOTAL->find(['date'=>date("Y-m-d")])['total'];?>
+            | 累積瀏覽: <?=$TOTAL->sum('total');?>
             <a href="index.php" style="float:right">回首頁</a>
         </div>
         <div id="title2">
@@ -49,16 +49,23 @@ include_once "./api/db.php";
             <div class="hal" id="main">
                 <div>
                     <!-- 加入跑馬燈 更改順序 -->
-                    <div class="" style="width:75%;display:inline-block;">
-                        <marquee> 請民眾踴躍投稿電子報，讓電子報成為大家相互交流、分享的園地！！ </marquee>
+                    <div style="width:75%;display:inline-block;">
+                        <marquee> 請民眾踴躍投稿電子報，讓電子報成為大家相互交流、分享的園地！詳見最新文章</marquee>
                     </div>
                     <!-- 更改寬度 -->
                     <span style="width:23%; display:inline-block;">
+                        <?php if(!isset($_SESSION['user'])):?>
                         <a href="?do=login">會員登入</a>
+                        <?php else: ?>
+                        歡迎,<?= $_SESSION['user']; ?>
+                        <br>
+                        <button onclick="location.href='admin.php'">管理</button>
+                        <button onclick="logout()">登出</button>
+                        <?php endif;?>
                     </span>
-                <login>
-                <!-- 插入特定功能頁面 -->
-                <?php
+                        </div>
+                        <!-- 插入特定功能頁面 -->
+                        <?php
                 #lloain
 					$do = $_GET['do']??'main';
 					$file = "front/".$do.".php";
@@ -68,16 +75,16 @@ include_once "./api/db.php";
 						include "front/main.php";
 					}
 			?>
+                </div>
+            </div>
+            <div id="bottom">
+                <!-- 改年份 -->
+                本網站建議使用：IE9.0以上版本，1024 x 768 pixels 以上觀賞瀏覽 ， Copyright © 2024健康促進網社群平台 All Right Reserved
+                <br>
+                <!-- 改路徑 -->
+                服務信箱：health@test.labor.gov.tw<img src="./icon/02B02.jpg" width="45">
             </div>
         </div>
-        <div id="bottom">
-            <!-- 改年份 -->
-            本網站建議使用：IE9.0以上版本，1024 x 768 pixels 以上觀賞瀏覽 ， Copyright © 2024健康促進網社群平台 All Right Reserved
-            <br>
-            <!-- 改路徑 -->
-            服務信箱：health@test.labor.gov.tw<img src="./icon/02B02.jpg" width="45">
-        </div>
-    </div>
 
 </body>
 
