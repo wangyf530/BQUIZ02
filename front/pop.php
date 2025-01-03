@@ -47,9 +47,10 @@
                 </span>
             </td>
             <!-- 從資料庫撈有多少人點讚 更改相關文字-->
-            <td>
+            <td  class="ct">
                 <?=$row['likes'];?>個人說
                 <img src="./icon/02B03.jpg" style="width:25px;">
+                <br>
                 <?php 
                 if(isset($_SESSION['user'])){
                     $chk=$LOG->count(['news'=>$row['id'],'user'=>$_SESSION['user']]);

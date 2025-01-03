@@ -33,7 +33,7 @@
                 <span class='detail'><?=nl2br($row['news']);?></span>
             </td>
             <!-- 有登入就可以點讚 -->
-            <td>
+            <td class="ct">
                 <?php
             // 在下面做更改讚的判定
                 if(isset($_SESSION['user'])){
