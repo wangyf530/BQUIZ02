@@ -44,17 +44,19 @@
             </div>
             <div class="hal" id="main">
                 <div>
-                    <div class="" style="width:75%;display:inline-block;">
+                    <div class="" style="width:80%;display:inline-block;">
                         <marquee> 請民眾踴躍投稿電子報，讓電子報成為大家相互交流、分享的園地！詳見最新文章 </marquee>
                     </div>
 
-                    <span style="width:23%; display:inline-block;">
+                    <span style="width:15%; display:inline-block; text-align:right;">
                         <?php if (!isset($_SESSION['user'])):?>
                         <a href="index.php?do=login">會員登入</a>
                         <?php else: ?>
-                        歡迎,<?= $_SESSION['user']; ?>
+                         歡迎, <?= $_SESSION['user']; ?>
+                        <?php if($_SESSION['user']=='admin'):?>
                         <br>
                         <button onclick="location.href='admin.php'">管理</button>
+                        <?php endif; ?>
                         <button onclick="logout()">登出</button>
                         <?php endif;?>
                     </span>
