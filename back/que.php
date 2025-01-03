@@ -2,8 +2,8 @@
     <legend>新增問卷</legend>
     <table style="width:100%">
         <tr>
-            <td>問卷名稱</td>
-            <td>
+            <td colspan="2">
+            問卷名稱
                 <input type="text" name="subject" id="subject" style="width:80%">
             </td>
         </tr>
@@ -39,13 +39,13 @@ function send(){
 
     $.post("./api/add_que.php",{subject,options},(res)=>{
         alert("hi")
-        console.log(res)
-        // location.reload()
+        // console.log(res)
+        location.reload()
     })
 }
 
 
 function resetForm(){
-    $("#input[type='text']").val("");
+    $("input[type='text']").val("");
 }
 </script>
