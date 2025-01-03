@@ -168,6 +168,8 @@ $TOTAL = new DB('total');
 $USER = new DB('users');
 $NEWS = new DB('news');
 $QUE = new DB('que');
+$LOG = new DB('log');
+
 
 if(!isset($_SESSION['view'])){
     if($TOTAL->count(['date'=>date("Y-m-d")])>0){

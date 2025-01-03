@@ -23,12 +23,16 @@
         ?>
         <tr>
             <td class="clo"><?=$row['title'];?></td>
-            <td><?=mb_substr($row['news'],0,30);?>...</td>
+            <td><?=mb_substr($row['news'],0,25);?>...</td>
             <!-- 有登入就可以點讚 -->
-            <td style='text-align:center;'>
+            <td class="ct">
             <?php
+            // 在下面做更改讚的判定
                 if(isset($_SESSION['user'])){
-                    echo "<a href='#' data-id='{$row['id']}' class='like'>讚</a>";
+                    // 要先確認好資料庫是否有點過讚
+                    $chk = $LOG->count(['news'=>$row['id'],'user'=>$_SESSION['user']]);
+                    $like = ($chk>0)?"收回讚":"讚";
+                    echo "<a href='#' data-id='{$row['id']}' class='like'> $like </a>";
                 }
 
             ?>
@@ -62,6 +66,9 @@
     $(".like").on('click',function(){
         let id = $(this).data('id');
         let like = $(this).text();
+        $.post("./api/like.php",{id},function(){
+
+        })
         // 如果是讚
         switch(like){
                 case "讚":
